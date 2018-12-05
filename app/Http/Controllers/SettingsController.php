@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class SettingsController extends Controller
 {
@@ -23,6 +24,8 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        return view('layouts.settings');
+        $user = Auth::user();
+
+        return view('layouts.settings',compact('user'));
     }
 }
