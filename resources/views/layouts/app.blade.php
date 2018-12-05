@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{(Auth::user())? url('/home') : url('/') }}">
                     {{ config('app.name', 'esi-projet') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -33,7 +33,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::user())
                         <a class="nav-link ml-5" href="{{ route('projects')}}">{{'Projets'}}</a>
+                        @endif
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -41,11 +43,13 @@
                         @guest
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('login') }}">{!! "Se connecter"!!}</a>  
+                                    <a class="nav-link" href="{{ route('login') }}">{!! "Se connecter"!!}</a>   
+                                @elseif (Route::has('login'))
+                                <a class="nav-link" href="{{ route('register') }}">{!!"S'inscrire"!!}</a>  
                                 @endif  
                             </li>
                         @else
-                            <li><input class="form-control ml-auto" type="search" placeholder="Rechercher..." aria-label="Rechercher"></li>
+                            <li class="mr-3"><input class="form-control ml-auto" type="search" placeholder="Rechercher..." aria-label="Rechercher"></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
