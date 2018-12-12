@@ -21,5 +21,13 @@ Route::get('/settings','SettingsController@index')->name('settings');
 
 Route::get('/projects','ProjectsController@index')->name('projects');
 
+Route::get('/users','UsersController@index')->name('users');
+
+Route::get('/projectsHandler','ProjectsController@indexAdmin')->name('projectsHandler');
+
+Route::delete('users/{user}','UsersController@delete')->name('user.delete');
+
+Route::delete('projects/{project}', 'ProjectsController@delete')->name('project.delete');
+
 Auth::routes();
 

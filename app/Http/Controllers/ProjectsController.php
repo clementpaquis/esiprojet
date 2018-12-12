@@ -28,4 +28,24 @@ class ProjectsController extends Controller
 
         return view('layouts.projects',compact('projects'));
     }
+
+    /**
+     * admin handling project page
+     * 
+     */
+    public function indexAdmin()
+    {
+        $projects = Project::all();
+
+        return view('layouts.projectsHandler',compact('projects'));
+    }
+
+    /**
+     * delete project
+     */
+    public function delete(Project $project){
+        $project->delete();
+        return back()->with('success', 'Projet supprimé');
+    }
+
 }

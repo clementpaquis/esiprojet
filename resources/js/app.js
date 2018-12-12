@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+import swal from 'sweetalert';
 
 window.Vue = require('vue');
 
@@ -31,3 +32,35 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+$(document).on('click', '[data-alert-form]', (e) => {
+    e.preventDefault()
+    let self = $(e.currentTarget)
+    let config = self.data('alertForm')
+    swal({
+        title: "Etes vous sur ?",
+        text: config.message,
+        icon: "warning",
+        buttons: {
+            cancel: {
+                text: "Annuler",
+                value: null,
+                visible: true,
+                className: "",
+                closeModal: true,
+            },
+            confirm: {
+                text: "OK",
+                value: true,
+                visible: true,
+                className: "",
+                closeModal: true
+            }
+        },
+        dangerMode: true
+    }).then((valid) => {
+        if (valid) {
+            $(config.form).submit()
+        }
+    })
+})
