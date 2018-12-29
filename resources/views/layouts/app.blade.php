@@ -60,7 +60,6 @@
                                     <a class="dropdown-item" href="{{ route('settings') }}" > {{ __('Paramètres') }}</a>
                                     @if (Auth::user()->type == 'admin')
                                     <a class="dropdown-item" href="{{ route('users') }}" > {{ __('Gérer les utilisateurs') }}</a>
-                                    <a class="dropdown-item" href="{{route('projectsHandler')}}" > {{ __('Gérer les projets')}}</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

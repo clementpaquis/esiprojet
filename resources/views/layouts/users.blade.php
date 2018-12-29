@@ -25,10 +25,11 @@
 @endsection
 
 <style>
-    i{
-        margin-left : 20px;
+    button{
+        float : right;
     }
     .header{
         font-style:italic;
+        font-size : 25px;
     }
 </style>

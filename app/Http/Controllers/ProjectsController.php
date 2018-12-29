@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use Auth;
 
 class ProjectsController extends Controller
 {
@@ -38,6 +39,29 @@ class ProjectsController extends Controller
         $projects = Project::all();
 
         return view('layouts.projectsHandler',compact('projects'));
+    }
+
+    /**
+     * add project page
+     */
+    public function addIndex(){
+        return view('layouts.addProject');        
+    }
+
+    /**
+     * store project in database
+     */
+    protected function store(){
+
+        $project = new Project();
+
+        $project->name = request('name');
+        $project->description = request('description');
+        $project->owner = Auth::user()->name . " " . Auth::user()->surname;
+
+        $project->save();
+
+        return redirect('/projects');
     }
 
     /**

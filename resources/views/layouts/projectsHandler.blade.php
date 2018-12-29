@@ -12,8 +12,6 @@
                         <span>{{$project->name}}</span>
                         <button class="btn btn-xs btn-danger" data-alert-form="{{ json_encode(['message'=>'Supprimer le projet ?', 'form'=>'#remove-project-'.$project->id]) }}" >
                                 <i class="material-icons" title="Supprimer le projet">delete</i></button>
-                        {{Form::open(['route'=>['project.delete', $project], 'method'=>'delete', 'id'=>'remove-project-'.$project->id]) }}
-                        {{Form::close()}}
                         <hr>
                         @endforeach
                     </div>

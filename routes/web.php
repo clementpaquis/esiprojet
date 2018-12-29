@@ -23,7 +23,9 @@ Route::get('/projects','ProjectsController@index')->name('projects');
 
 Route::get('/users','UsersController@index')->name('users');
 
-Route::get('/projectsHandler','ProjectsController@indexAdmin')->name('projectsHandler');
+Route::get('/projects/create','ProjectsController@addIndex')->name('addProject');
+
+Route::post('/projects', 'ProjectsController@store');
 
 Route::delete('users/{user}','UsersController@delete')->name('user.delete');
 
